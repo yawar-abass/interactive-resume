@@ -5,7 +5,9 @@ export default function ResumeAwards({ awards }: { awards?: Award[] }) {
 
   return (
     <section className="max-w-5xl w-full mt-12">
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Awards</h2>
+      <h2 className="text-2xl font-semibold text-gray-100 mb-6 text-center border-b border-gray-700 pb-2">
+        Awards
+      </h2>
       <div className="grid gap-4">
         {awards.map((award) => (
           <div

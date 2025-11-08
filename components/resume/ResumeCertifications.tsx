@@ -9,7 +9,7 @@ export default function ResumeCertifications({
 
   return (
     <section className="max-w-5xl w-full mt-12">
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">
+      <h2 className="text-2xl font-semibold text-gray-100 mb-6 text-center border-b border-gray-700 pb-2">
         Certifications
       </h2>
       <div className="grid gap-4 sm:grid-cols-2">

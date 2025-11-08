@@ -4,7 +4,10 @@ import React from "react";
 const ResumeEducation = ({ education }: { education: Education[] }) => {
   return (
     <section className="max-w-5xl w-full mt-12">
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Education</h2>
+      <h2 className="text-2xl font-semibold text-gray-100 mb-6 text-center border-b border-gray-700 pb-2">
+        Education
+      </h2>
+
       <div className="grid gap-4">
         {education.map((edu) => (
           <div

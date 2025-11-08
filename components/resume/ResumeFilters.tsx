@@ -1,16 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { FilterMode } from "@/lib/types";
-import { useState } from "react";
 
 interface ResumeFiltersProps {
   skills: string[];
   selectedSkills: string[];
   setSelectedSkills: (skills: string[]) => void;
-  search: string;
-  setSearch: (value: string) => void;
   filterMode: FilterMode;
   setFilterMode: (mode: FilterMode) => void;
 }
@@ -19,8 +15,6 @@ export default function ResumeFilters({
   skills,
   selectedSkills,
   setSelectedSkills,
-  search,
-  setSearch,
   filterMode,
   setFilterMode,
 }: ResumeFiltersProps) {
@@ -106,15 +100,6 @@ export default function ResumeFilters({
           </div>
         )}
       </div>
-
-      {/* Search Bar */}
-      <Input
-        type="text"
-        placeholder="Search by company, role, or tech..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="bg-white/10 border-gray-600 text-white placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500"
-      />
     </div>
   );
 }

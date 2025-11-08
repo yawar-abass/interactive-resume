@@ -10,7 +10,7 @@ export default function ResumeViewToggle({
 }) {
   const modes: ResumeView[] = ["cards", "timeline", "table"];
   return (
-    <div className="flex items-center justify-end bg-white/10 backdrop-blur-xl border border-gray-700/40 rounded-xl p-1">
+    <div className="flex items-center  justify-end bg-white/10 backdrop-blur-xl border border-gray-700/40 rounded-xl p-1">
       {modes.map((mode) => (
         <Button
           key={mode}
