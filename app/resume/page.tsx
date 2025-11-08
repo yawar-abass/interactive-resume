@@ -15,7 +15,8 @@ import ResumeCertifications from "@/components/resume/ResumeCertifications";
 import ResumeAwards from "@/components/resume/ResumeAwards";
 import { Button } from "@/components/ui/button";
 import { FilterMode, ResumeView, ResumeItem } from "@/lib/types";
-import ResumePrint from "@/components/resume/ResumePrint";
+import { ResumePDF } from "@/components/resume/ResumePrint";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 export default function ResumePage() {
   const router = useRouter();
@@ -85,10 +86,10 @@ export default function ResumePage() {
     });
   }, [combinedData, selectedSkills, filterMode, search]);
 
-  const handleDownload = () => window.print();
+  // const handleDownload = () => window.print();
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white overflow-hidden px-6 py-12">
+    <main className="relative min-h-screen flex flex-col items-center bg-linear-to-r from-gray-900 via-slate-900 to-black text-white overflow-hidden px-6 py-12">
       {/* Background Glow */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-10 left-10 h-[300px] w-[300px] bg-indigo-500/30 blur-3xl rounded-full animate-pulse"></div>
@@ -97,18 +98,27 @@ export default function ResumePage() {
 
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
           {resumeData.name}
         </h1>
         <p className="text-gray-300 mt-2 text-lg">{resumeData.title}</p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <Button
-            onClick={handleDownload}
-            className="rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md hover:shadow-purple-500/30 transition-all"
+          {/* <Button onClick={handleDownload}>Download Resume</Button> */}
+          <PDFDownloadLink
+            document={<ResumePDF resume={resumeData} />}
+            fileName={`${resumeData.name}_Resume.pdf`}
           >
-            Download Resume
-          </Button>
+            {({ loading }) =>
+              loading ? (
+                <Button disabled>Preparing PDF...</Button>
+              ) : (
+                <Button className="rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md cursor-pointer hover:shadow-purple-500/30 transition-all">
+                  Download Resume
+                </Button>
+              )
+            }
+          </PDFDownloadLink>
           <Button
             variant="destructive"
             onClick={() => {
@@ -163,11 +173,6 @@ export default function ResumePage() {
       <ResumeAwards awards={resumeData.awards} />
 
       <Footer />
-
-      {/* print resume */}
-      <div className="hidden print:block">
-        <ResumePrint resume={resumeData} />
-      </div>
     </main>
   );
 }
