@@ -15,14 +15,12 @@ import ResumeCertifications from "@/components/resume/ResumeCertifications";
 import ResumeAwards from "@/components/resume/ResumeAwards";
 import { Button } from "@/components/ui/button";
 import { FilterMode, ResumeView, ResumeItem } from "@/lib/types";
-import { ResumePDF } from "@/components/resume/ResumePrint";
-import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Input } from "@/components/ui/input";
 import ResumeSummary from "@/components/resume/ResumeSummary";
+import ResumePDFButton from "@/components/resume/ResumePdfBtn";
 
 export default function ResumePage() {
   const router = useRouter();
-
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [filterMode, setFilterMode] = useState<FilterMode>("OR");
   const [search, setSearch] = useState("");
@@ -120,20 +118,7 @@ export default function ResumePage() {
         <p className="text-gray-300 mt-2 text-lg">{resumeData.title}</p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <PDFDownloadLink
-            document={<ResumePDF resume={resumeData} />}
-            fileName={`${resumeData.name}_Resume.pdf`}
-          >
-            {({ loading }) =>
-              loading ? (
-                <Button disabled>Preparing PDF...</Button>
-              ) : (
-                <Button className="rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md cursor-pointer hover:shadow-purple-500/30 transition-all">
-                  Download Resume
-                </Button>
-              )
-            }
-          </PDFDownloadLink>
+          <ResumePDFButton resume={resumeData} />
           <Button
             variant="destructive"
             onClick={() => {

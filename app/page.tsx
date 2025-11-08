@@ -13,7 +13,7 @@ export default function Home() {
 
       <div className="text-center px-6 max-w-2xl">
         <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-linear-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-          Hi, I’m Yawar Abass
+          Welcome!
         </h1>
         <p className="mt-4 text-gray-300 text-md md:text-xl">
           Frontend Developer Assignment for AlgoKart. Create and manage your
