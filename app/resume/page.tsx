@@ -17,7 +17,8 @@ import { Button } from "@/components/ui/button";
 import { FilterMode, ResumeView, ResumeItem } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import ResumeSummary from "@/components/resume/ResumeSummary";
-import ResumePDFButton from "@/components/resume/ResumePdfBtn";
+// import ResumePDFButton from "@/components/resume/ResumePdfBtn";
+import dynamic from "next/dynamic";
 
 export default function ResumePage() {
   const router = useRouter();
@@ -29,6 +30,16 @@ export default function ResumePage() {
   useEffect(() => {
     if (!isLoggedIn()) router.push("/login");
   }, [router]);
+
+  const ResumePDFButton = useMemo(
+    () =>
+      dynamic(
+        () =>
+          import("@/components/resume/ResumePdfBtn").then((mod) => mod.default),
+        { ssr: false }
+      ),
+    []
+  );
 
   // Filtering
   const filterSection = useCallback(

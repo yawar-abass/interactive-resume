@@ -34,7 +34,7 @@ This project fulfills the **Frontend Assignment Requirements** for Algokart.
 
 | Category                  | Tools                                                |
 | ------------------------- | ---------------------------------------------------- |
-| **Frontend Framework**    | [Next.js](https://nextjs.org/) (v14)                 |
+| **Frontend Framework**    | [Next.js](https://nextjs.org/)                       |
 | **Language**              | TypeScript                                           |
 | **Styling**               | [Tailwind CSS](https://tailwindcss.com/)             |
 | **UI Library**            | [shadcn/ui](https://ui.shadcn.com/)                  |
