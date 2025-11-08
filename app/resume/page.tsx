@@ -15,6 +15,7 @@ import ResumeCertifications from "@/components/resume/ResumeCertifications";
 import ResumeAwards from "@/components/resume/ResumeAwards";
 import { Button } from "@/components/ui/button";
 import { FilterMode, ResumeView, ResumeItem } from "@/lib/types";
+import ResumePrint from "@/components/resume/ResumePrint";
 
 export default function ResumePage() {
   const router = useRouter();
@@ -162,6 +163,11 @@ export default function ResumePage() {
       <ResumeAwards awards={resumeData.awards} />
 
       <Footer />
+
+      {/* print resume */}
+      <div className="hidden print:block">
+        <ResumePrint resume={resumeData} />
+      </div>
     </main>
   );
 }

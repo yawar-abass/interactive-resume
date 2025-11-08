@@ -150,3 +150,47 @@
 .animate-fadeOut {
   animation: fadeOut 0.25s ease-in-out forwards;
 }
+
+@media print {
+  /* hide app UI */
+  body * {
+    visibility: hidden !important;
+  }
+
+  .print-resume,
+  .print-resume * {
+    visibility: visible !important;
+  }
+
+  .print-resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important;
+    color: #000 !important;
+    box-shadow: none;
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  html,
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: A4;
+    margin: 1in;
+  }
+
+  /* remove glowing effects, buttons, navs */
+  nav,
+  footer,
+  button,
+  .no-print {
+    display: none !important;
+  }
+}
