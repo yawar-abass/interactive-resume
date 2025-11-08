@@ -50,7 +50,7 @@ export default function ResumeFilters({
                 onClick={() => setFilterMode(mode)}
                 className={`rounded-lg px-4 text-sm font-medium transition-all ${
                   filterMode === mode
-                    ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white"
+                    ? "bg-linear-to-r from-indigo-500 to-purple-600 text-white"
                     : "text-gray-300 hover:bg-white/10"
                 }`}
               >
@@ -68,7 +68,7 @@ export default function ResumeFilters({
               onClick={() => toggleSkill(skill)}
               className={`h-9 rounded-full border px-4 transition-all ${
                 selectedSkills.includes(skill)
-                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white"
+                  ? "bg-linear-to-r from-indigo-500 to-purple-600 text-white"
                   : "bg-white/10 text-gray-300 hover:bg-white/20"
               }`}
             >
@@ -79,7 +79,7 @@ export default function ResumeFilters({
             <Button
               variant="outline"
               onClick={clearSkills}
-              className="h-9 rounded-full text-gray-200 border-gray-600 hover:bg-white/10"
+              className={`h-9 rounded-full  border-gray-600 hover:bg-white/10  text-black hover:text-red-600`}
             >
               Clear All
             </Button>

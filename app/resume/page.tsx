@@ -32,7 +32,7 @@ export default function ResumePage() {
     if (!isLoggedIn()) router.push("/login");
   }, [router]);
 
-  // ✅ Filtering logic (applies to both)
+  // Filtering
   const filterSection = useCallback(
     (items: ResumeItem[]) => {
       return items.filter((item) => {
@@ -67,7 +67,7 @@ export default function ResumePage() {
     [search, selectedSkills, filterMode]
   );
 
-  // ✅ Create normalized arrays
+  // Create normalized arrays
   const experiences: ResumeItem[] = useMemo(
     () =>
       resumeData.experience.map((exp) => ({
@@ -94,7 +94,6 @@ export default function ResumePage() {
     []
   );
 
-  // ✅ Now safe — compiler sees stable deps
   const filteredExperience = useMemo(
     () => filterSection(experiences),
     [filterSection, experiences]
@@ -104,8 +103,9 @@ export default function ResumePage() {
     () => filterSection(projects),
     [filterSection, projects]
   );
+
   return (
-    <main className="relative min-h-screen flex flex-col items-center bg-gradient-to-r from-gray-900 via-slate-900 to-black text-white overflow-hidden px-6 py-12">
+    <main className="relative min-h-screen flex flex-col items-center bg-linear-to-r from-gray-900 via-slate-900 to-black text-white overflow-hidden px-6 py-12">
       {/* Background Glow */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-10 left-10 h-[300px] w-[300px] bg-indigo-500/30 blur-3xl rounded-full animate-pulse"></div>
@@ -114,7 +114,7 @@ export default function ResumePage() {
 
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
           {resumeData.name}
         </h1>
         <p className="text-gray-300 mt-2 text-lg">{resumeData.title}</p>
@@ -128,7 +128,7 @@ export default function ResumePage() {
               loading ? (
                 <Button disabled>Preparing PDF...</Button>
               ) : (
-                <Button className="rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md cursor-pointer hover:shadow-purple-500/30 transition-all">
+                <Button className="rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md cursor-pointer hover:shadow-purple-500/30 transition-all">
                   Download Resume
                 </Button>
               )
@@ -140,7 +140,7 @@ export default function ResumePage() {
               logout();
               router.push("/login");
             }}
-            className="rounded-xl"
+            className="rounded-xl cursor-pointer"
           >
             Logout
           </Button>
@@ -152,7 +152,7 @@ export default function ResumePage() {
       <section className="max-w-5xl w-full mb-8 space-y-6">
         {/* Filters and controls container */}
         <div className="flex flex-col gap-4">
-          {/* Left: Filters */}
+          {/* Filters */}
           <ResumeFilters
             skills={resumeData.skills}
             selectedSkills={selectedSkills}
