@@ -42,3 +42,14 @@ export interface Award {
 }
 
 export type ResumeView = "cards" | "timeline" | "table";
+
+export type FilterMode = "AND" | "OR";
+
+export interface ResumeItem {
+  type: "experience" | "project";
+  title: string; // role or project name
+  organization?: string; // company or source
+  duration?: string;
+  description: string;
+  tech?: string[];
+}

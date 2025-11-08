@@ -1,4 +1,6 @@
-export default function ResumeTimeline({ data }: { data: any[] }) {
+import { ResumeItem } from "@/lib/types";
+
+export default function ResumeTimeline({ data }: { data: ResumeItem[] }) {
   if (data.length === 0)
     return <p className="text-gray-400 text-center">No experience found.</p>;
 
@@ -10,11 +12,11 @@ export default function ResumeTimeline({ data }: { data: any[] }) {
           <div className="rounded-2xl bg-white/10 backdrop-blur-xl border border-gray-700/40 p-5 shadow-sm hover:shadow-indigo-500/20 transition-all hover:translate-x-1">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                {exp.role}
+                {exp.title}
               </h3>
               <p className="text-xs md:text-sm text-gray-400">{exp.duration}</p>
             </div>
-            <p className="text-sm text-gray-400 mt-0.5">{exp.company}</p>
+            <p className="text-sm text-gray-400 mt-0.5">{exp.organization}</p>
             <p className="text-gray-300 mt-3 leading-relaxed">
               {exp.description}
             </p>

@@ -11,33 +11,78 @@ import ResumeTimeline from "@/components/resume/ResumeTimeline";
 import ResumeTable from "@/components/resume/ResumeTable";
 import Footer from "@/components/layout/Footer";
 import ResumeEducation from "@/components/resume/ResumeEducation";
+import ResumeCertifications from "@/components/resume/ResumeCertifications";
+import ResumeAwards from "@/components/resume/ResumeAwards";
 import { Button } from "@/components/ui/button";
-import { Experience } from "@/lib/types";
-
-type ViewMode = "cards" | "timeline" | "table";
+import { FilterMode, ResumeView, ResumeItem } from "@/lib/types";
 
 export default function ResumePage() {
   const router = useRouter();
-  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
-  const [search, setSearch] = useState("");
-  const [view, setView] = useState<ViewMode>("cards");
 
+  // State management
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [filterMode, setFilterMode] = useState<FilterMode>("OR");
+  const [search, setSearch] = useState("");
+  const [view, setView] = useState<ResumeView>("cards");
+
+  // Redirect if not logged in
   useEffect(() => {
     if (!isLoggedIn()) router.push("/login");
   }, [router]);
 
-  const filteredExperience = useMemo(() => {
-    return resumeData.experience.filter((exp: Experience) => {
-      const matchSkill = selectedSkill
-        ? exp.description.toLowerCase().includes(selectedSkill.toLowerCase())
-        : true;
+  // ✅ Normalize data: merge experiences and projects into a common structure
+  const combinedData: ResumeItem[] = useMemo(() => {
+    const experiences: ResumeItem[] = resumeData.experience.map((exp) => ({
+      type: "experience",
+      title: exp.role,
+      organization: exp.company,
+      duration: exp.duration,
+      description: exp.description,
+      tech: [],
+    }));
+
+    const projects: ResumeItem[] = (resumeData.projects || []).map((proj) => ({
+      type: "project",
+      title: proj.name,
+      organization: "Personal Project",
+      duration: "",
+      description: proj.description,
+      tech: proj.tech || [],
+    }));
+
+    return [...experiences, ...projects];
+  }, []);
+
+  // ✅ Filtering logic: search + multi-skill + AND/OR
+  const filteredItems = useMemo(() => {
+    return combinedData.filter((item) => {
+      const searchTerm = search.toLowerCase();
+
       const matchSearch =
-        exp.role.toLowerCase().includes(search.toLowerCase()) ||
-        exp.company.toLowerCase().includes(search.toLowerCase()) ||
-        exp.description.toLowerCase().includes(search.toLowerCase());
-      return matchSkill && matchSearch;
+        item.title.toLowerCase().includes(searchTerm) ||
+        (item.organization?.toLowerCase().includes(searchTerm) ?? false) ||
+        item.description.toLowerCase().includes(searchTerm) ||
+        (item.tech &&
+          item.tech.some((t) => t.toLowerCase().includes(searchTerm)));
+
+      if (selectedSkills.length === 0) return matchSearch;
+
+      const skillMatches = selectedSkills.map((skill) => {
+        const lower = skill.toLowerCase();
+        return (
+          item.description.toLowerCase().includes(lower) ||
+          (item.tech && item.tech.some((t) => t.toLowerCase().includes(lower)))
+        );
+      });
+
+      const skillMatch =
+        filterMode === "AND"
+          ? skillMatches.every(Boolean)
+          : skillMatches.some(Boolean);
+
+      return matchSearch && skillMatch;
     });
-  }, [selectedSkill, search]);
+  }, [combinedData, selectedSkills, filterMode, search]);
 
   const handleDownload = () => window.print();
 
@@ -51,7 +96,7 @@ export default function ResumePage() {
 
       {/* Header */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
           {resumeData.name}
         </h1>
         <p className="text-gray-300 mt-2 text-lg">{resumeData.title}</p>
@@ -59,7 +104,7 @@ export default function ResumePage() {
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Button
             onClick={handleDownload}
-            className="rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md hover:shadow-purple-500/30 transition-all"
+            className="rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md hover:shadow-purple-500/30 transition-all"
           >
             Download Resume
           </Button>
@@ -80,23 +125,41 @@ export default function ResumePage() {
       <section className="max-w-5xl w-full mb-8 space-y-6">
         <ResumeFilters
           skills={resumeData.skills}
-          selectedSkill={selectedSkill}
-          setSelectedSkill={setSelectedSkill}
+          selectedSkills={selectedSkills}
+          setSelectedSkills={setSelectedSkills}
           search={search}
           setSearch={setSearch}
+          filterMode={filterMode}
+          setFilterMode={setFilterMode}
         />
         <ResumeViewToggle view={view} setView={setView} />
       </section>
 
-      {/* Experience */}
+      {/* Combined Experience + Projects */}
       <section className="max-w-5xl w-full transition-all duration-300 animate-fadeIn">
-        {view === "cards" && <ResumeCardList data={filteredExperience} />}
-        {view === "timeline" && <ResumeTimeline data={filteredExperience} />}
-        {view === "table" && <ResumeTable data={filteredExperience} />}
+        <h2 className="text-2xl font-semibold text-gray-100 mb-6 text-center">
+          Experience & Projects
+        </h2>
+
+        {view === "cards" && <ResumeCardList data={filteredItems} />}
+        {view === "timeline" && <ResumeTimeline data={filteredItems} />}
+        {view === "table" && <ResumeTable data={filteredItems} />}
+
+        {filteredItems.length === 0 && (
+          <p className="text-center text-gray-400 mt-4">
+            No matching results found.
+          </p>
+        )}
       </section>
 
       {/* Education */}
       <ResumeEducation education={resumeData.education} />
+
+      {/* Certifications */}
+      <ResumeCertifications certifications={resumeData.certifications} />
+
+      {/* Awards */}
+      <ResumeAwards awards={resumeData.awards} />
 
       <Footer />
     </main>

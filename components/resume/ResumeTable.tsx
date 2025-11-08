@@ -1,4 +1,6 @@
-export default function ResumeTable({ data }: { data: any[] }) {
+import { ResumeItem } from "@/lib/types";
+
+export default function ResumeTable({ data }: { data: ResumeItem[] }) {
   if (data.length === 0)
     return <p className="text-gray-400 text-center">No experience found.</p>;
 
@@ -19,8 +21,8 @@ export default function ResumeTable({ data }: { data: any[] }) {
               key={i}
               className="border-b border-gray-800 hover:bg-white/10 transition-colors"
             >
-              <td className="px-6 py-4 font-medium text-white">{exp.role}</td>
-              <td className="px-6 py-4">{exp.company}</td>
+              <td className="px-6 py-4 font-medium text-white">{exp.title}</td>
+              <td className="px-6 py-4">{exp.organization}</td>
               <td className="px-6 py-4 text-gray-400">{exp.duration}</td>
               <td className="px-6 py-4">{exp.description}</td>
             </tr>
