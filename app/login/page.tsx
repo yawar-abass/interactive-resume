@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { login } from "@/lib/auth";
+import Footer from "@/components/layout/Footer";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -90,11 +91,7 @@ const LoginPage = () => {
           </span>
         </p>
       </Card>
-
-      {/* Footer */}
-      <footer className="absolute bottom-5 text-sm text-gray-500">
-        © {new Date().getFullYear()} Built by Yawar Abass
-      </footer>
+      <Footer />
     </main>
   );
 };

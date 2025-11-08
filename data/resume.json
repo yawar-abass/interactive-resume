@@ -1,0 +1,136 @@
+{
+  "name": "Yawar Abass",
+  "title": "Frontend Developer & AI Enthusiast",
+  "summary": "Creative and detail-oriented frontend developer with a strong passion for crafting visually appealing and performant web applications. Experienced in building scalable, interactive UIs using React, Next.js, and TypeScript. Exploring AI-powered features for smarter web experiences.",
+  "skills": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "SQL",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Redux",
+    "Zustand",
+    "Git",
+    "Vercel",
+    "REST API",
+    "Prisma",
+    "Python",
+    "PyTorch",
+    "Machine Learning",
+    "OpenAI API",
+    "SEO",
+    "WordPress",
+    "Sanity CMS"
+  ],
+  "experience": [
+    {
+      "company": "Wudav",
+      "role": "Frontend Developer",
+      "duration": "Jan 2024 – Present",
+      "description": "Developed a content-driven website using Next.js and Tailwind CSS integrated with WordPress as a headless CMS. Implemented responsive layouts, dynamic routing, and SEO optimizations for fast global indexing. Collaborated with designers to build a visually engaging user interface."
+    },
+    {
+      "company": "Digital Pandey",
+      "role": "Frontend Engineer",
+      "duration": "Aug 2023 – Dec 2023",
+      "description": "Built a dynamic marketing platform using Next.js, Sanity CMS, and shadcn/ui components. Integrated Google Analytics and SEO meta-tags for marketing insights. Improved performance by implementing static site generation and image optimization."
+    },
+    {
+      "company": "Freelance Projects",
+      "role": "Full Stack Developer",
+      "duration": "May 2023 – Jul 2023",
+      "description": "Developed several small-scale web applications including an AI image enhancer and a blog CMS. Used Next.js with MongoDB and Prisma ORM for backend logic and Clerk for authentication. Deployed projects on Vercel with CI/CD pipelines."
+    },
+    {
+      "company": "Personal Project – Imaginify",
+      "role": "Founder / Developer",
+      "duration": "Jan 2023 – Apr 2023",
+      "description": "Built an AI-powered image SaaS platform using Next.js, Cloudinary APIs, and Clerk authentication. Implemented AI-based image editing features like restoration, recoloring, and object removal. Integrated Stripe payments for subscription-based access."
+    },
+    {
+      "company": "Academic Research Project – Cervical Cancer Classification",
+      "role": "Research Assistant",
+      "duration": "Jul 2022 – Dec 2022",
+      "description": "Worked on a deep learning project using PyTorch for cervical cell image classification. Experimented with CNN architectures and Vision Transformers (ViT). Achieved 92% accuracy using a fine-tuned pretrained model. Documented and presented findings in a research paper."
+    },
+    {
+      "company": "Open Source Contributions",
+      "role": "Contributor",
+      "duration": "2022 – Ongoing",
+      "description": "Actively contributed to open-source projects related to Next.js UI libraries and AI integration. Fixed documentation, improved code readability, and optimized React components for accessibility."
+    }
+  ],
+  "projects": [
+    {
+      "name": "AI Resume Builder",
+      "tech": ["Next.js", "Tailwind CSS", "OpenAI API"],
+      "description": "Created an AI-driven resume generator that dynamically suggests improvements and restructures content for better readability. Includes PDF export and live preview."
+    },
+    {
+      "name": "Stock Vision",
+      "tech": ["React", "TypeScript", "Flask", "Machine Learning"],
+      "description": "Built a stock market prediction dashboard that visualizes trends and price movements using AI-based time-series models (LSTM, Transformer)."
+    },
+    {
+      "name": "NextAuth Demo App",
+      "tech": ["Next.js", "NextAuth", "MongoDB"],
+      "description": "Implemented Google OAuth authentication with role-based access control and JWT session handling in a modern Next.js app."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Computer Applications (MCA)",
+      "university": "University of Kashmir",
+      "year": "2025",
+      "details": "Focused on full-stack development, AI/ML, and cloud computing. Completed major projects on deep learning and web architecture."
+    },
+    {
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "university": "Islamia College of Science and Commerce",
+      "year": "2022",
+      "details": "Built multiple academic projects using Java, MySQL, and Python. Participated in hackathons and web design competitions."
+    },
+    {
+      "degree": "Higher Secondary Education (Science)",
+      "university": "JKBOSE",
+      "year": "2019",
+      "details": "Specialized in Physics, Chemistry, and Computer Science. Developed an early interest in programming and web development."
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Frontend Developer Career Path",
+      "issuer": "Scrimba",
+      "year": "2023"
+    },
+    {
+      "title": "Modern React with Redux",
+      "issuer": "Udemy",
+      "year": "2022"
+    },
+    {
+      "title": "Deep Learning Specialization",
+      "issuer": "Coursera (Andrew Ng)",
+      "year": "2023"
+    }
+  ],
+  "awards": [
+    {
+      "name": "Top 10 Projects – DeveloperWeek Hackathon",
+      "year": "2024",
+      "description": "Recognized for creating an innovative AI image enhancement tool using Next.js and Cloudinary APIs."
+    },
+    {
+      "name": "Best Research Presentation – AI in Healthcare",
+      "year": "2022",
+      "description": "Awarded for a project on cervical cancer image classification using Vision Transformers."
+    }
+  ]
+}

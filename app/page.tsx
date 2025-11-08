@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import Link from "next/link";
@@ -27,10 +28,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="absolute bottom-5 text-sm text-gray-500">
-        © {new Date().getFullYear()} Built by Yawar Abass
-      </footer>
+      <Footer />
     </Container>
   );
 }
